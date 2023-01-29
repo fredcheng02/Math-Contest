@@ -1,0 +1,32 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+\usepackage{fullpage}
+\usepackage{setspace}
+\newcommand{\df}[1]{\underline{\textit{#1}}}
+\newcommand{\F}{\mathbf{F}}
+
+\renewcommand{\phi}{\varphi}
+
+\onehalfspacing
+
+\begin{document}
+
+\noindent \large Putnam 2022 Problem A3:
+
+\normalsize Let $p > 5$ be a prime number. Let $f(p)$ denote the number of infinite sequences $\{a_n\}_{n=1}^\infty$ such that $a_n \in \{1,2,\dots,p-1\}$ and $a_n a_{n+2} \equiv 1+a_{n+1} \pmod{p}$ for all $n \geq 1$. Show that $f(p) \equiv 0 \text{ or } 2 \pmod{5}$.
+
+\begin{proof}
+    For $a_n$ and $1+a_{n+1}$ in $\F_p^*$, we know that the $a_{n+2}$ is uniquely determined. Also note that if $1+a_{n+1} = 0$, i.e., $a_{n+1} = p-1$, then $p \mid a_n a_{n+2}$, so that the sequence must terminate. Therefore, the number of such infinite sequences is the number of pairs $(a_1,a_2)$ such that $p-1$ can never appear in the sequence.
+
+    Now suppose $p-1$ appears in the sequence, and let $a_{n+2} = p-1$ . It follows that $a_{n+1} \equiv -1 - a_n \pmod{p}$. We move the index forward by 1, and then we have $a_{n-1}a_{n+1} \equiv 1 + a_n \pmod{p}$. This shows that $a_{n-1} (-1-a_n) \equiv 1 + a_n \pmod{p}$, which shows that $a_{n-1} = p - 1$, which contradicts our assumption. Therefore, $p-1$ must appear in either $a_1$, $a_2$, or $a_3$, if it can ever appear.
+
+    First consider $a_1$, which has $p-2$ options (excluding $a_1 = p-1$). For $a_2$, first $a_2 \neq p-1$. Second, for every $a_1 \in \{1,2,\dots,p-2\}$,  if $a_3 \equiv -1$, then $a_2 \equiv -1-a_1$ for the corresponding $a_1$. Thus we cannot let $a_2 = p-1-a_1$. Meanwhile, $a_2 \neq p-1$ either, and so only $(p-2)(p-3)$ pairs of $(a_1,a_2)$ are valid.
+
+    Now it suffices to check for all $p \not\equiv 0 \pmod{5}$, $(p-2)(p-3) \equiv 0 \text{ or } 2 \pmod{5}$, which is indeed true.
+\end{proof}
+
+
+\end{document}
